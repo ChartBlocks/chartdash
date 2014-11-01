@@ -7,91 +7,75 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/renderer.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="navbar-header">
-        <a class="logo" href="#"><img src="img/logo.png"></a>
-      </div>
-      <div class="navbar-collapse collapse">
-      </div>
-	</div>
-
-	    <div class="row">
-	        <div id="chart-col" class="col-md-4">
-	        	<div class="embed">
-                    <img src="img/chart-placeholder.png">
-                    <div id="code">
-                        <p>Enter your chart embed code or your public url</p>
-	          		    <textarea id="embed-code" type ="text"/></textarea>
-                    </div>
-                    <div id="chart"></div>
-	          	</div>
-	        </div>
-            <div id="chart-col" class="col-md-4">
-                <div class="embed">
-                    <img src="img/chart-placeholder.png">
-                    <div id="code">
-                        <p>Enter your chart embed code or your public url</p>
-                        <textarea id="embed-code" type ="text"/></textarea>
-                    </div>
-                    <div id="chart"></div>
-                </div>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="logo" href="#"><img src="img/logo.png"></a>
             </div>
-            <div id="chart-col" class="col-md-4">
-                <div class="embed">
-                    <img src="img/chart-placeholder.png">
-                    <div id="code">
-                        <p>Enter your chart embed code or your public url</p>
-                        <textarea id="embed-code" type ="text"/></textarea>
-                    </div>
-                    <div id="chart"></div>
-                </div>
-            </div>
-	    </div>
-        <div class="row">
-            <div id="chart-col" class="col-md-4">
-                <div class="embed">
-                    <img src="img/chart-placeholder.png">
-                    <div id="code">
-                        <p>Enter your chart embed code or your public url</p>
-                        <textarea id="embed-code" type ="text"/></textarea>
-                    </div>
-                    <div id="chart"></div>
-                </div>
-            </div>
-            <div id="chart-col" class="col-md-4">
-                <div class="embed">
-                    <img src="img/chart-placeholder.png">
-                    <div id="code">
-                        <p>Enter your chart embed code or your public url</p>
-                        <textarea id="embed-code" type ="text"/></textarea>
-                    </div>
-                    <div id="chart"></div>
-                </div>
-            </div>
-            <div id="chart-col" class="col-md-4">
-                <div class="embed">
-                    <div id="add">
-                        <p>Add another chart</p>
-                        <svg class="icon" version="1.1" id="Plus" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     width="32px" height="32px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-<polygon fill="#252525" points="512,193.7 320,193.7 320,0 192,0 192,193.7 0,193.7 0,320 192,320 192,512 320,512 320,320 512,320 "/>
-                    </div>
-                </div>
-            </div>
+            <div class="navbar-collapse collapse"></div>
         </div>
 
-	<footer>
-		<hr>
-	    <p>&copy; ChartBlocks 2014</p>
-	</footer>
+        <div id="dashboard">
+
+            <div class="row">
+                <div class="col" data-shape="medium-square">
+                    <div class="box"></div>
+                </div>
+                <div class="col" data-shape="medium-square">
+                    <div class="box"></div>
+                </div>
+                <div class="col" data-shape="medium-square">
+                    <div class="box"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" data-shape="large-rectangle">
+                    <div class="box"></div>
+                </div>
+                <div class="col" data-shape="medium-square">
+                    <div class="box"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" data-shape="large-square">
+                    <div class="box"></div>
+                </div>
+                <div class="col" data-shape="medium-square">
+                    <div class="box"></div>
+                </div>
+                <div class="col" data-shape="medium-square">
+                    <div class="box"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" data-shape="full-rectangle">
+                    <div class="box"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col" data-shape="full-square">
+                    <div class="box"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <hr>
+            <p>&copy; ChartBlocks 2014</p>
+        </footer>
 
     </body>
 </html>
