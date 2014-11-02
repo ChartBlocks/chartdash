@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $('#dashboard').cbDashboard();
+    $('#dashboard').cbDashboardEdit();
 
 //    $('#embed-code').change(function(){
 //        $.each($('#chart-col'), function() {

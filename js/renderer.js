@@ -1,5 +1,7 @@
 (function($) {
 
+    $.embedly.defaults.key = 'fd0ff9f7c2df4c438e361e6c53b4e902';
+
     $.fn.cbDashboard = function() {
 
         var shapeClasses = [
@@ -48,18 +50,34 @@
             }
         };
 
-        function renderBox(box) {
-            var $box = $(box);
-            var shapeName = $box.attr('data-shape');
+        function renderBox(col) {
+            var $col = $(col);
+            var $box = $('.box', $col);
+            var shapeName = $col.attr('data-shape');
 
             if (shapeName in shapes) {
                 var shape = shapes[shapeName];
-                $box.removeClass(shapeClasses.join(' '));
-                $box.addClass(shape.classes.join(' '));
-                maintainShape(box);
+                $col.removeClass(shapeClasses.join(' '));
+                $col.addClass(shape.classes.join(' '));
+                maintainShape(col);
             } else {
                 console.warn('Unknown shape', shapeName);
             }
+
+            var content = $box.html();
+            var $raw = $('<div class="raw-content" />');
+            var $rendered = $('<div class="rendered-content" />');
+
+            $box.empty();
+            $box.append($raw);
+            $box.append($rendered);
+
+            $raw.html(content);
+
+            $col.on('render', function() {
+                parseContent(col);
+            }).trigger('render');
+
         }
 
         function maintainShape(boxes) {
@@ -68,7 +86,6 @@
 
             $boxes.filter('.square').each(function() {
                 var $sq = $(this);
-                console.log('sq', $sq.width(), this);
                 $sq.height($sq.width());
             });
 
@@ -78,11 +95,70 @@
             });
         }
 
+        function parseContent(col) {
+            var $raw = $('.raw-content', col);
+            var $rendered = $('.rendered-content', col);
+
+            var raw = $raw.html();
+            var html = markdown.toHTML(raw);
+            $rendered.html(html);
+
+            oEmbed($rendered);
+        }
+
+        function oEmbed(element) {
+            var $element = $(element);
+            var content = $element.html();
+            var urls = extractUrls(content);
+
+            $.embedly.oembed(urls).done(function(results) {
+                $(results).each(function(i, result) {
+                    var regex = new RegExp("^(<p>)?" + result.original_url + '(<\/p>)?');
+
+                    switch (result.type) {
+                        case 'rich':
+                        case 'video':
+                            content = content.replace(regex, result.html);
+                            break;
+                        case 'photo':
+                            content = content.replace(regex, "<img style='" + result.style + "' src='" + result.url + "' alt='" + result.title + "' />");
+                            break;
+                        default:
+                            var html = null;
+                            html = result.thumbnail_url ? "<img src='" + result.thumbnail_url + "' class='thumb' style='" + result.style + "'/>" : "";
+                            html += "<a href='" + result.original_url + "'>" + result.title + "</a>";
+                            html += result.provider_name ? "<a href='" + result.provider_url + "' class='provider'>" + result.provider_name + "</a>" : "";
+                            html += result.description ? '<div class="description">' + result.description + '</div>' : '';
+
+                            content = content.replace(regex, html);
+                    }
+                });
+
+                $element.html(content);
+            });
+        }
+
+        function extractUrls(content) {
+            var matches = content.match(/^(<p>)?http([^\s\n<]+)(<\/p>)?/g);
+
+            if (matches) {
+                var urls = matches.map(function(url) {
+                    console.log('url', url);
+                    return url.replace(/<\/?p>/g, '');
+                });
+                
+                console.log('urls', urls);
+                return urls;
+            }
+
+            return null;
+        }
+
         var $shapes = this.find("[data-shape]");
         $shapes.each(function() {
             renderBox(this);
         });
-        
+
         maintainShape($shapes);
 
         $(window).on('resize', function() {

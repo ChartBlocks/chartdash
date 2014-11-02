@@ -11,7 +11,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/markdown.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/renderer.js"></script>
+        <script type="text/javascript" src="js/editor.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
         <link rel="stylesheet" href="css/main.css">
     </head>
@@ -24,22 +27,28 @@
         </div>
 
         <div id="dashboard">
-
+            
             <div class="row">
-                <div class="col" data-shape="medium-square">
-                    <div class="box"></div>
+                <div class="col" data-shape="large-rectangle">
+                    <div class="box">http://public.chartblocks.com/c/54286c66c9a61d252ed5c969/</div>
                 </div>
                 <div class="col" data-shape="medium-square">
-                    <div class="box"></div>
-                </div>
-                <div class="col" data-shape="medium-square">
-                    <div class="box"></div>
+                    <div class="box">http://instagram.com/p/u3NPA6Jl6E</div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col" data-shape="large-rectangle">
-                    <div class="box"></div>
+                <div class="col" data-shape="medium-square">
+                    <div class="box"># Markdown example
+
+Things to do:
+
+*  Style markdown elements
+*  Make a [link](http://daringfireball.net/projects/markdown/syntax) to the syntax page
+                    </div>
+                </div>
+                <div class="col" data-shape="medium-square">
+                    <div class="box">http://youtu.be/xQ_IQS3VKjA</div>
                 </div>
                 <div class="col" data-shape="medium-square">
                     <div class="box"></div>
@@ -71,6 +80,29 @@
             </div>
 
         </div>
+
+
+        <div id="columnModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">Edit content</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Enter the content of this grid below. Use any supported Embed.ly URL to include rich content, or use markdown
+                            syntax for static text.</p>
+
+                        <textarea class="content"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary save">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="editor"></div>
 
         <footer>
             <hr>
