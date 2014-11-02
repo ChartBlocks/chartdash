@@ -143,11 +143,9 @@
 
             if (matches) {
                 var urls = matches.map(function(url) {
-                    console.log('url', url);
                     return url.replace(/<\/?p>/g, '');
                 });
                 
-                console.log('urls', urls);
                 return urls;
             }
 
