@@ -1,6 +1,22 @@
 (function($) {
 
     $.fn.cbDashboardEdit = function() {
+        var $dashboard = $(this);
+
+        var templates = {
+            'rec-sq': {
+                'shapes': ['large-rectangle', 'medium-square']
+            },
+            'sq-sq-sq': {
+                'shapes': ['medium-square', 'medium-square', 'medium-square']
+            },
+            'lsq-sq-sq': {
+                'shapes': ['large-square', 'medium-square', 'medium-square']
+            },
+            'lrec': {
+                'shapes': ['full-rectangle']
+            }
+        };
 
         function openEditor(col) {
             var $col = $(col);
@@ -48,6 +64,44 @@
             $col.trigger('render');
         }
 
+        function openRowCreator() {
+            var $modal = $('#rowModal');
+
+            $modal.unbind('show.bs.modal').on('show.bs.modal', function(e) {
+                $modal.find('.layout').unbind('click.insert').bind('click.insert', function() {
+                    var $option = $(this);
+                    var layout = $option.attr('data-layout');
+                    addRow(layout);
+
+                    $modal.modal('hide');
+                });
+            });
+
+            $modal.modal({
+                backdrop: false,
+                keyboard: true,
+                show: true
+            });
+        }
+
+        function addRow(templateName) {
+            if (templateName in templates) {
+                var template = templates[templateName];
+                var $row = $('<div class="row" />');
+                $row.appendTo($dashboard);
+
+                $(template.shapes).each(function(i, shape) {
+                    var $col = $('<div class="col" data-shape="' + shape + '" />')
+                            .append('<div class="box" />');
+
+                    $row.append($col);
+                    $dashboard.trigger('append', [$col]);
+                });
+            } else {
+                console.warn('Unknown layout', templateName);
+            }
+        }
+
         this.find(".col").each(function() {
             var $col = $(this);
             $col.addClass('editable');
@@ -55,6 +109,8 @@
                 openEditor(this);
             });
         });
+
+        this.on('add', openRowCreator);
 
         return this;
 

@@ -54,6 +54,7 @@
             var $col = $(col);
             var $box = $('.box', $col);
             var shapeName = $col.attr('data-shape');
+            console.log('col', $col, shapeName);
 
             if (shapeName in shapes) {
                 var shape = shapes[shapeName];
@@ -158,6 +159,10 @@
         });
 
         maintainShape($shapes);
+        
+        this.on('append', function(e, col){
+            renderBox(col);
+        });
 
         $(window).on('resize', function() {
             maintainShape($shapes);
