@@ -5,6 +5,11 @@ body{
     background:#2a343a;
 }
 
+.application .navbar .btn{
+    float:right;
+    margin:7px 10px;
+}
+
 #dashboard{
     margin-top:50px;
 }
