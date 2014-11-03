@@ -3,6 +3,7 @@
     $.embedly.defaults.key = 'fd0ff9f7c2df4c438e361e6c53b4e902';
 
     $.fn.cbDashboard = function () {
+        var $dashboard = $(this);
 
         var shapeClasses = [
             'col-md-4',
@@ -54,7 +55,6 @@
             var $col = $(col);
             var $box = $('.box', $col);
             var shapeName = $col.attr('data-shape');
-            console.log('col', $col, shapeName);
 
             if (shapeName in shapes) {
                 var shape = shapes[shapeName];
@@ -79,6 +79,18 @@
                 parseContent(col);
             }).trigger('render');
 
+        }
+
+        function unrenderBox(col) {
+            var $col = $(col);
+            var $box = $('.box', col);
+            var $raw = $('.raw-content', col);
+
+            $col.removeClass(shapeClasses.join(' '));
+            $col.removeClass('empty editable');
+
+            var content = $raw.html();
+            $box.empty().html(content);
         }
 
         function maintainShape(boxes) {
@@ -156,20 +168,36 @@
             return null;
         }
 
-        var $shapes = this.find("[data-shape]");
-        $shapes.each(function () {
-            renderBox(this);
-        });
+        function renderAll() {
+            var $shapes = $dashboard.find("[data-shape]");
+            $shapes.each(function (i, shape) {
+                renderBox(shape);
+            });
 
-        maintainShape($shapes);
+            maintainShape($shapes);
+        }
+
+        function unrenderAll() {
+            var $shapes = $dashboard.find("[data-shape]");
+            $shapes.each(function () {
+                unrenderBox(this);
+            });
+
+            maintainShape($shapes);
+        }
 
         this.on('append', function (e, col) {
             renderBox(col);
         });
 
+        this.on('renderAll', renderAll);
+        this.on('unrenderAll', unrenderAll);
+
         $(window).on('resize', function () {
             maintainShape($shapes);
         });
+
+        this.trigger('renderAll');
 
         return this;
 

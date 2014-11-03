@@ -122,6 +122,8 @@
 
         $download.on('click', function () {
             var $item = $(this);
+            
+            $dashboard.trigger('unrenderAll');
 
             var html = document.documentElement.outerHTML;
             var bodyTag = html.indexOf('<body');
@@ -132,12 +134,16 @@
             var $body = $('<div>' + body + '</div>');
             $body.find('.editor').remove();
 
+            var base = window.location.href.replace(/\/([^\/]+)?$/, '');
             var output = html.substring(0, from) + $body.html() + html.substring(to);
             output = output.replace(/^(.*)EDITOR\:LINE(.*)$/mg, '');
             output = output.replace(/^([\s\t\n]+)$/mg, '');
+            output = output.replace(/(src|href)="(?!http|\/\/)([^"])/g, '$1="' + base + '/$2');
 
             var body = btoa(output);
             $item.attr('href', 'data:text/html;charset=utf-8;base64,' + body);
+            
+            $dashboard.trigger('renderAll');
         });
 
         return this;
