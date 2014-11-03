@@ -1,12 +1,15 @@
-.add .box{
+.empty .box{
     cursor:pointer;
 }
-.col.add .box:hover{
+.col .box:hover{
+    border-color:#2B95D3;
+}
+.col.empty .box:hover{
     border-color:#2B95D3;
     background-color:rgba(43,149,211,.8);
 }
 
-.add .box:hover:before{
+.empty .box:hover:before{
     position:absolute;
     top:40%;
     left:0;
