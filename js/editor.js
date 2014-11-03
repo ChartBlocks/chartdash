@@ -62,7 +62,6 @@
 
             $raw.html(content);
             $col.trigger('render');
-            $col.removeClass('add');
         }
 
         function openRowCreator() {

@@ -1,8 +1,8 @@
-(function($) {
+(function ($) {
 
     $.embedly.defaults.key = 'fd0ff9f7c2df4c438e361e6c53b4e902';
 
-    $.fn.cbDashboard = function() {
+    $.fn.cbDashboard = function () {
 
         var shapeClasses = [
             'col-md-4',
@@ -75,7 +75,7 @@
 
             $raw.html(content);
 
-            $col.on('render', function() {
+            $col.on('render', function () {
                 parseContent(col);
             }).trigger('render');
 
@@ -85,23 +85,26 @@
             var $boxes = $(boxes);
             $boxes.css('height', null);
 
-            $boxes.filter('.square').each(function() {
+            $boxes.filter('.square').each(function () {
                 var $sq = $(this);
                 $sq.height($sq.width());
             });
 
-            $boxes.filter('.rectangle').each(function() {
+            $boxes.filter('.rectangle').each(function () {
                 var $sq = $(this);
                 $sq.height(Math.floor($sq.width() * 0.496));
             });
         }
 
         function parseContent(col) {
+            var $col = $(col);
             var $raw = $('.raw-content', col);
             var $rendered = $('.rendered-content', col);
 
             var raw = $raw.html();
-            var html = markdown.toHTML(raw);
+            var html = (raw.length > 0) ? markdown.toHTML(raw) : null;
+
+            $col.toggleClass('empty', (raw.length === 0));
             $rendered.html(html);
 
             oEmbed($rendered);
@@ -112,8 +115,8 @@
             var content = $element.html();
             var urls = extractUrls(content);
 
-            $.embedly.oembed(urls).done(function(results) {
-                $(results).each(function(i, result) {
+            $.embedly.oembed(urls).done(function (results) {
+                $(results).each(function (i, result) {
                     var regex = new RegExp("^(<p>)?" + result.original_url + '(<\/p>)?');
 
                     switch (result.type) {
@@ -143,10 +146,10 @@
             var matches = content.match(/^(<p>)?http([^\s\n<]+)(<\/p>)?/g);
 
             if (matches) {
-                var urls = matches.map(function(url) {
+                var urls = matches.map(function (url) {
                     return url.replace(/<\/?p>/g, '');
                 });
-                
+
                 return urls;
             }
 
@@ -154,17 +157,17 @@
         }
 
         var $shapes = this.find("[data-shape]");
-        $shapes.each(function() {
+        $shapes.each(function () {
             renderBox(this);
         });
 
         maintainShape($shapes);
-        
-        this.on('append', function(e, col){
+
+        this.on('append', function (e, col) {
             renderBox(col);
         });
 
-        $(window).on('resize', function() {
+        $(window).on('resize', function () {
             maintainShape($shapes);
         });
 
