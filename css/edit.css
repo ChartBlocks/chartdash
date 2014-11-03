@@ -1,0 +1,38 @@
+.add .box{
+    cursor:pointer;
+}
+.col.add .box:hover{
+    border-color:#2B95D3;
+    background-color:rgba(43,149,211,.8);
+}
+
+.add .box:hover:before{
+    position:absolute;
+    top:40%;
+    left:0;
+    right:0;
+    bottom:0;
+    color:#fff;
+    font-size:40px;
+    text-align:center;
+    content:"Double click to add content";
+}
+
+#addRow{
+    display:block;
+    margin:10px;
+    padding:20px;
+    border:3px #777777 dashed;
+    color:#777777;
+    text-align:center;
+    cursor:pointer;
+}
+
+#addRow:hover{
+    border-color:#2B95D3;
+    color:#2B95D3;
+}
+
+#addRow span{
+    font-size:40px;
+}
