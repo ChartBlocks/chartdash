@@ -16,9 +16,10 @@
         <script type="text/javascript" src="js/renderer.js"></script>
         <script type="text/javascript" src="js/editor.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/render.css">
+        <link rel="stylesheet" href="css/edit.css">
     </head>
-    <body>
+    <body class="application">
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
                 <a class="logo" href="#"><img src="img/logo.png"></a>
@@ -29,10 +30,10 @@
         <div id="dashboard">
 
             <div class="row">
-                <div class="col" data-shape="large-rectangle">
+                <div class="add col" data-shape="large-rectangle">
                     <div class="box"></div>
                 </div>
-                <div class="col" data-shape="medium-square">
+                <div class="add col" data-shape="medium-square">
                     <div class="box"></div>
                 </div>
             </div>
@@ -112,8 +113,12 @@
         <div id="editor"></div>
 
         <footer>
-            <hr>
-            <p>&copy; ChartBlocks 2014</p>
+            <div class="row">
+                <div class="col col-md-12">
+                    <hr>
+                    <p>&copy; ChartBlocks 2014</p>
+                </div>
+            </div>
         </footer>
 
     </body>
