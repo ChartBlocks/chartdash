@@ -2,6 +2,7 @@
 
     $.fn.cbDashboardEdit = function () {
         var $dashboard = $(this);
+        var $download = $('.download');
 
         var templates = {
             'rec-sq': {
@@ -117,6 +118,26 @@
         this.on('add', openRowCreator);
         this.on('append', function (e, col) {
             makeColumnEditable(col);
+        });
+
+        $download.on('click', function () {
+            var $item = $(this);
+
+            var html = document.documentElement.outerHTML;
+            var bodyTag = html.indexOf('<body');
+            var from = html.indexOf("\n", bodyTag);
+            var to = html.indexOf('</body', from);
+
+            var body = html.substring(from, to);
+            var $body = $('<div>' + body + '</div>');
+            $body.find('.editor').remove();
+
+            var output = html.substring(0, from) + $body.html() + html.substring(to);
+            output = output.replace(/^(.*)EDITOR\:LINE(.*)$/mg, '');
+            output = output.replace(/^([\s\t\n]+)$/mg, '');
+
+            var body = btoa(output);
+            $item.attr('href', 'data:text/html;charset=utf-8;base64,' + body);
         });
 
         return this;

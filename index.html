@@ -7,19 +7,29 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript"></script>
         <script src="js/markdown.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/renderer.js"></script>
-        <script type="text/javascript" src="js/editor.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
-        <link rel="stylesheet" href="css/render.css">
-        <link rel="stylesheet" href="css/edit.css">
+        <link rel="stylesheet" href="css/render.css" />
+        <script type="text/javascript" src="js/editor.js"></script><!-- EDITOR:LINE -->
+        <link rel="stylesheet" href="css/edit.css" /><!-- EDITOR:LINE -->
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#dashboard').cbDashboard();
+                $('#dashboard').cbDashboardEdit(); // EDITOR:LINE
+                $('#addRow').on('click', function () { // EDITOR:LINE
+                    $('#dashboard').trigger('add'); // EDITOR:LINE
+                }); // EDITOR:LINE
+            });
+        </script>
     </head>
     <body class="application">
+
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
                 <a class="logo" href="#"><img src="img/logo.png"></a>
@@ -40,11 +50,11 @@
 
         </div>
 
-        <div id="addRow">
+        <div id="addRow" class="editor">
             <span>Add another row</span>
         </div>
 
-        <div id="rowModal" class="modal fade">
+        <div id="rowModal" class="modal fade editor">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -90,7 +100,7 @@
             </div>
         </div>
 
-        <div id="columnModal" class="modal fade">
+        <div id="columnModal" class="modal fade editor">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -110,7 +120,6 @@
                 </div>
             </div>
         </div>
-        <div id="editor"></div>
 
         <footer>
             <div class="row">
@@ -120,6 +129,8 @@
                 </div>
             </div>
         </footer>
+
+        <a href="#" class="download editor" download="index.html">Download</a>
 
     </body>
 </html>
