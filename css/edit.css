@@ -22,24 +22,33 @@
 }
 
 .deleteRow{
-    margin: 0 10px;
+    position:relative;
+    display:block;
+    color:#fff;
+    margin:0 10px;
     padding:10px;
-    cursor: pointer;
-    text-align: center;
+    cursor:pointer;
+    text-align:center;
+    border-radius:4px;
+    background-color:#d9534f;
+}
+
+.deleteRow:hover{
+    background-color:#c9302c;
 }
 
 #addRow{
+    position:relative;
     display:block;
+    color:#fff;
     margin:10px;
-    padding:20px;
-    border:3px #777777 dashed;
-    color:#777777;
-    text-align:center;
+    padding:10px;
     cursor:pointer;
+    text-align:center;
+    border-radius:4px;
+    background-color:#5cb85c;
 }
 
-#addRow span{
-    font-size:40px;
-    border-color:#2B95D3;
-    color:#2B95D3;
+#addRow:hover{
+    background-color:#449d44;
 }
