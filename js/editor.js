@@ -98,9 +98,26 @@
                     $row.append($col);
                     $dashboard.trigger('append', [$col]);
                 });
+
+                addDeleteOptionToRow($row);
             } else {
                 console.warn('Unknown layout', templateName);
             }
+        }
+
+        function addDeleteOptionToRow(row) {
+            var $row = $(row);
+            var html = $('#deleteRowTemplate').html();
+
+            var $delete = $(html);
+            $delete.insertAfter($row);
+
+            $delete.on('click', function () {
+                if (confirm('Delete entire row?')) {
+                    $row.remove();
+                    $delete.remove();
+                }
+            });
         }
 
         function makeColumnEditable(col) {
@@ -110,6 +127,10 @@
                 openEditor(this);
             });
         }
+
+        this.find(".row").each(function () {
+            addDeleteOptionToRow(this);
+        });
 
         this.find(".col").each(function () {
             makeColumnEditable(this);
@@ -122,7 +143,7 @@
 
         $download.on('click', function () {
             var $item = $(this);
-            
+
             $dashboard.trigger('unrenderAll');
 
             var html = document.documentElement.outerHTML;
@@ -142,7 +163,7 @@
 
             var body = btoa(output);
             $item.attr('href', 'data:text/html;charset=utf-8;base64,' + body);
-            
+
             $dashboard.trigger('renderAll');
         });
 

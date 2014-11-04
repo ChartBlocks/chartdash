@@ -1,0 +1,57 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ChartBlocks Dashboard</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="http://localhost/copia/chartdash/apple-touch-icon.png">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//cdn.embed.ly/jquery.embedly-3.1.1.min.js" type="text/javascript"></script>
+        <script src="http://localhost/copia/chartdash/js/markdown.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="http://localhost/copia/chartdash/js/renderer.js"></script>
+        <link rel="stylesheet" href="http://localhost/copia/chartdash/css/render.css">
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#dashboard').cbDashboard();
+
+            });
+        </script>
+    </head>
+    <body class="application">
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="logo" href="http://localhost/copia/chartdash/#"><img src="http://localhost/copia/chartdash/img/logo.png"></a>
+            </div>
+
+        </div>
+
+        <div id="dashboard">
+
+            <div class="row">
+                <div style="height: 399px;" class="col col-md-8 rectangle empty editable" data-shape="large-rectangle">
+                    <div class="box"><div class="raw-content"></div><div class="rendered-content"></div></div>
+                </div>
+                <div style="height: 397px;" class="col col-md-4 square empty editable" data-shape="medium-square">
+                    <div class="box"><div class="raw-content"></div><div class="rendered-content"></div></div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            <div class="row">
+                <div class="col col-md-12">
+                    <hr>
+                    <p>© ChartBlocks 2014</p>
+                </div>
+            </div>
+        </footer>
+
+</body></html>

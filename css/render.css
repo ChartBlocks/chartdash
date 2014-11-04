@@ -73,6 +73,10 @@ body.application hr{
     margin:3px 0 0 10px;
 }
 
+.template{
+    display: none;
+}
+
 #addRow{
     display:none;
 }
