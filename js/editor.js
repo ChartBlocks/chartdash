@@ -160,6 +160,9 @@
             output = output.replace(/^(.*)EDITOR\:LINE(.*)$/mg, '');
             output = output.replace(/^([\s\t\n]+)$/mg, '');
             output = output.replace(/(src|href)="(?!http|\/\/)([^"])/g, '$1="' + base + '/$2');
+            output = output.replace(/[\u00A9]/gim, function (i) {
+                return '&#' + i.charCodeAt(0) + ';';
+            });
 
             var body = btoa(output);
             $item.attr('href', 'data:text/html;charset=utf-8;base64,' + body);
