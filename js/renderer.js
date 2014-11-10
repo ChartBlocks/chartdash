@@ -194,6 +194,7 @@
         this.on('unrenderAll', unrenderAll);
 
         $(window).on('resize', function () {
+            var $shapes = $dashboard.find("[data-shape]");
             maintainShape($shapes);
         });
 

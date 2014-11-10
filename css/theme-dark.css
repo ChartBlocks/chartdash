@@ -1,0 +1,17 @@
+body{
+    background-color:#555e6c;
+}
+
+.box{
+    background-color:#373b43;
+    border-color:#484d55;
+}
+
+body.application hr{
+    border-color:#484d55;
+    margin:10px 0;
+}
+
+footer p{
+    color:#fff;
+}
