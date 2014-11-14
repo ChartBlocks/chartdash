@@ -116,5 +116,13 @@ svg g rect{
 }
 
 #rowModal .layout svg rect{
-    fill:#e1e1e1;
+    fill:#ddd;
+}
+
+#columnModal textarea.content{
+    width:100%;
+    min-height:200px;
+    padding:8px;
+    border:solid 2px #ddd;
+    border-radius:2px;
 }
